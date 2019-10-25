@@ -322,6 +322,7 @@ export function rewriteRequestPath(
   }
 
   let lang;
+  let site;
   if (parseRouteUrl) {
     if (config.debug) {
       console.log(`DEBUG: Parsing route URL using ${decodedReqPath} URL...`);
@@ -338,6 +339,7 @@ export function rewriteRequestPath(
         finalReqPath = `/${finalReqPath}`;
       }
       lang = routeParams.lang;
+      site = routeParams.site;
 
       if (routeParams.qsParams) {
         qs += `&${routeParams.qsParams}`;
@@ -355,6 +357,10 @@ export function rewriteRequestPath(
 
   if (lang) {
     path = `${path}&sc_lang=${lang}`;
+  }
+
+  if (site) {
+    path = `${path}&sc_site=${site}`;
   }
 
   if (qs) {
